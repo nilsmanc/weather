@@ -35,4 +35,12 @@ export const createHeader = (city) => {
   cityLocation.textContent = 'My location'
   unitsC.textContent = 'C'
   unitsF.textContent = 'F'
+
+  header.append(headerContainer)
+  headerContainer.append(headerCity, headerUnits)
+  cityInner.append(cityChange, cityLocation)
+  headerCity.append(cityName, cityInner)
+  headerUnits.append(unitsC, unitsF)
+
+  return header
 }
