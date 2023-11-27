@@ -32,4 +32,25 @@ export const createContent = (data) => {
   description.textContent = capitalizeFirstLetter(data.weather[0].description)
   iconBloc.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`
   units.textContent = 'o'
+
+  const createWeatherItemTitle = (text) => {
+    const span = document.createElement('span')
+    span.textContent = text
+
+    return span
+  }
+
+  const createWeatherItemContent = (text) => {
+    const p = document.createElement('p')
+    p.textContent = text
+
+    return p
+  }
+
+  weatherInfoWind.append(
+    createWeatherItemTitle('Wind'),
+    createWeatherItemContent(
+      data.wind.speed + ' m/s, ' + directionOfwWind(data.wind.deg)
+    )
+  )
 }
