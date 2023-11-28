@@ -1,3 +1,5 @@
+import { directionOfwWind, capitalizeFirstLetter } from './helper.js'
+
 export const createContent = (data) => {
   const main = document.createElement('main')
   const section = document.createElement('section')
