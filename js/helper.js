@@ -37,3 +37,11 @@ export const cToF = (celsius) => {
 export const fToC = (fahrenheit) => {
   return ((fahrenheit - 32) * 5) / 9
 }
+
+export const resetWeatherContent = (city, weather) => {
+  localStorage.setItem('city', JSON.stringify(city))
+  document.body.innerHTML = ''
+  const header = createHeader(city)
+  const content = createContent(weather)
+  document.body.append(header, content)
+}
