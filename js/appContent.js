@@ -55,4 +55,19 @@ export const createContent = (data) => {
       data.wind.speed + ' m/s, ' + directionOfwWind(data.wind.deg)
     )
   )
+
+  weatherInfoPressure.append(
+    createWeatherItemTitle('Pressure'),
+    createWeatherItemContent(data.main.pressure + ' мм рт. ст.')
+  )
+
+  weatherInfoHumidity.append(
+    createWeatherItemTitle('Humidity'),
+    createWeatherItemContent(data.main.humidity + ' %')
+  )
+
+  weatherInfoClouds.append(
+    createWeatherItemTitle('Clouds'),
+    createWeatherItemContent(data.clouds.all + ' %')
+  )
 }
