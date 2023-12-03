@@ -70,4 +70,18 @@ export const createContent = (data) => {
     createWeatherItemTitle('Clouds'),
     createWeatherItemContent(data.clouds.all + ' %')
   )
+
+  main.append(section)
+  section.append(container)
+  container.append(inner, description, weatherInfo)
+  inner.append(iconBloc, temperature, units)
+  weatherInfo.append(weatherInfoList)
+  weatherInfoList.append(
+    weatherInfoWind,
+    weatherInfoPressure,
+    weatherInfoHumidity,
+    weatherInfoClouds
+  )
+
+  return main
 }
