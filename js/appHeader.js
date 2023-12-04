@@ -36,6 +36,36 @@ export const createHeader = (city) => {
   unitsC.textContent = 'C'
   unitsF.textContent = 'F'
 
+  cityChange.addEventListener('click', () => {
+    headerCity.innerHTML = ''
+    searchBlock.append(searchInput, searchBtn, errorBlock)
+    headerCity.append(searchBlock)
+  })
+
+  const showError = (message) => {
+    errorBlock.classList.add('show-error')
+    errorBlock.textContent = message
+  }
+
+  searchBtn.addEventListener('click', async () => {
+    if (!searchInput.value) {
+      return
+    }
+
+    try {
+      const weather = await getWeatherData(searchInput.value)
+
+      if (weather.message) {
+        showError(weather.message)
+        return
+      }
+
+      resetWeatherContent(weather.name, weather)
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
   header.append(headerContainer)
   headerContainer.append(headerCity, headerUnits)
   cityInner.append(cityChange, cityLocation)
