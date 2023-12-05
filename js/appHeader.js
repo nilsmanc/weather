@@ -1,3 +1,6 @@
+import { getWeatherData } from './api.js'
+import { cToF, fToC, resetWeatherContent } from './helper.js'
+
 export const createHeader = (city) => {
   const header = document.createElement('header')
   const headerContainer = document.createElement('div')
@@ -64,6 +67,34 @@ export const createHeader = (city) => {
     } catch (error) {
       console.log(error)
     }
+  })
+
+  unitsC.addEventListener('click', () => {
+    if (unitsC.classList.contains('unit-current')) {
+      return
+    }
+
+    unitsC.classList.add('unit-current')
+    unitsF.classList.remove('unit-current')
+    document.querySelector('.weather__units').textContent = 'o'
+
+    const temperature = document.querySelector('.weather__temperature')
+    const convertedTemp = fToC(+temperature.textContent)
+    temperature.textContent = Math.round(convertedTemp)
+  })
+
+  unitsF.addEventListener('click', () => {
+    if (unitsF.classList.contains('unit-current')) {
+      return
+    }
+
+    unitsF.classList.add('unit-current')
+    unitsC.classList.remove('unit-current')
+    document.querySelector('.weather__units').textContent = 'f'
+
+    const temperature = document.querySelector('.weather__temperature')
+    const convertedTemp = cToF(+temperature.textContent)
+    temperature.textContent = Math.round(convertedTemp)
   })
 
   header.append(headerContainer)
