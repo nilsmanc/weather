@@ -1,4 +1,5 @@
 import { getWeatherData } from './api.js'
+import { handleWeatherByGeolocation } from './geolocation.js'
 import { cToF, fToC, resetWeatherContent } from './helper.js'
 
 export const createHeader = (city) => {
@@ -96,6 +97,23 @@ export const createHeader = (city) => {
     const convertedTemp = cToF(+temperature.textContent)
     temperature.textContent = Math.round(convertedTemp)
   })
+
+  window.addEventListener('click', (e) => {
+    if (
+      e.target == searchInput ||
+      e.target == searchBtn ||
+      e.target == cityChange
+    ) {
+      return
+    } else {
+      headerCity.innerHTML = ''
+      errorBlock.classList.remove('show-error')
+      searchInput.value = ''
+      headerCity.append(cityName, cityInner)
+    }
+  })
+
+  cityLocation.addEventListener('click', handleWeatherByGeolocation)
 
   header.append(headerContainer)
   headerContainer.append(headerCity, headerUnits)
